@@ -1,3 +1,19 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <button type="button" class="btn" [disabled]="!ableToAdd()" (click)="addUser()">Adauga utilizator</button>
+  <div formArrayName="users">
+    <div *ngFor="let user of usersControls; let i = index">
+      <div [formGroupName]="i">
+        <label>Email</label>
+        <input type="text" formControlName="email">
+        <label>Prenume</label>
+        <input type="text" formControlName="name">
+        <label>Nume</label>
+        <input type="text" formControlName="surname">
+        <label>Grupa</label>
+        <input type="text" formControlName="grupa">
+      </div>
+      <button type="button" class="btn" [disabled]="!ableToRemove()" (click)="removeUser(i)">Sterge utilizator</button>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
