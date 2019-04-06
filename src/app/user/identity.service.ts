@@ -19,14 +19,14 @@ export class IdentityService {
   private _userObservable: Observable<User>;
   private _userSubject: Subject<User>;
 
-  constructor(private afDb: AngularFirestore, private afAuth: AngularFireAuth) {
+  constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth) {
     this._authSubject = new ReplaySubject(1);
     this._userSubject = new ReplaySubject(1);
   }
 
   public getFirebaseAuthState(): Observable<firebase.User> {
     if (isNullOrUndefined(this._authObservable)) {
-      this._authObservable = this.afAuth.authState;
+      this._authObservable = this._afAuth.authState;
       this._authObservable.subscribe(auth => {
         this._authSubject.next(auth);
       });
@@ -36,13 +36,12 @@ export class IdentityService {
   }
 
   public getUserData(email?: string): Observable<User> {
-    
     if (isNullOrUndefined(email)) {
       email = this._auth.email;
     }
 
     if (isNullOrUndefined(this._userObservable)) {
-      this._userObservable = this.afDb
+      this._userObservable = this._afDb
           .collection('Users')
           .doc(email)
           .snapshotChanges().pipe(map(snap => snap.payload.data() as User));
@@ -52,7 +51,21 @@ export class IdentityService {
     return this._userSubject.asObservable();
   }
 
+  public addIncompleteUser(userData: User): Promise<any> {
+    const accountKey = this.b64EncodeUnicode(userData.email);
+    return this._afDb.collection('Users').doc(userData.email).set(userData, { merge: true })
+  }
 
+  public async isUserRegistered(userKey: String): Promise<boolean> {
+    const email = this.b64DecodeUnicode(userKey);
+    let userData = await this.getUserData(email).toPromise();
+    
+    if (isNullOrUndefined(userData.password)) {
+      return false;
+    }
+
+    return true;
+  }
 
 
 

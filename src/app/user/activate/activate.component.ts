@@ -15,8 +15,6 @@ export class ActivateComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log(this.identityService.b64EncodeUnicode("mihai.lupea@gmail.com"))
       console.log(this.identityService.b64DecodeUnicode("bWloYWkubHVwZWFAZ21haWwuY29t"))
-      // console.log(atob(params['id']));
     })
   }
-
 }
