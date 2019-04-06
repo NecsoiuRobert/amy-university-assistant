@@ -59,6 +59,7 @@ export class ActivateComponent implements OnInit {
   onSubmit() {
     console.log(this.userForm);
     if (this.userForm.valid) {
+      this.userForm.get('passwordConfirm').setValue(null);
       const response = this.userForm.value as User;
       console.log(response);
       response.email = this.user.email;
