@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
         }
       ).catch(
         error => {
-          this.loginForm.updateValueAndValidity();
+          this.loginForm.markAsTouched();
+          this.loginForm.markAsDirty();
         }
       );
     }
