@@ -1,3 +1,12 @@
-<p>
-  alerts works!
-</p>
+<form [formGroup]="alertForm" (ngSubmit)="onSubmit()" *ngIf="alertForm">
+  <label>Titlu</label>
+  <input type="text" formControlName="title">
+  <label>Anunt</label>
+  <input type="text" formControlName="announce">
+  <label>Grupa</label>
+  <select formControlName="grupa"> 
+    <option [value]="null">Toate</option>
+    <option *ngFor="let grupa of grupe" [value]="grupa">{{grupa}}</option>
+  </select>
+  <button mat-raised-button type="submit">Login</button>
+</form>

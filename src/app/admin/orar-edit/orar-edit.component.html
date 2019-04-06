@@ -17,6 +17,7 @@
     </select>
     <label>Grupa</label>
     <select formControlName="grupa"> 
+      <option [value]="null">Toate</option>
       <option *ngFor="let grupa of grupe" [value]="grupa">{{grupa}}</option>
     </select>
     <label>Zi</label>
