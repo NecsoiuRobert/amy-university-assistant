@@ -60,8 +60,9 @@ export class IdentityService {
 
   public async finishRegisterIncompleteUser(userData: User): Promise<any> {
     const accountKey = this.b64EncodeUnicode(userData.email);
-    await this._afDb.collection('Users').doc(userData.email).set(userData, { merge: true });
-    return this._afAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
+    await this._afAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
+    userData.password = this.b64EncodeUnicode(userData.password);    
+    return this._afDb.collection('Users').doc(userData.email).set(userData, { merge: true });
   }
 
   public isUserRegistered(userKey: String): Promise<boolean> {
@@ -71,7 +72,6 @@ export class IdentityService {
         if (isNullOrUndefined(data.password)) {
           resolve(false);
         }
-    
         resolve(true);
       })
     })
@@ -80,7 +80,7 @@ export class IdentityService {
   public LoginWithEmailAndPassword(email: string, password: string): Promise<any> {
     return this._afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(authState => {
-          
+          console.log(authState);
         })
   }
 
