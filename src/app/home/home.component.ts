@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VoiceListenerService } from '../voiceAssistant/voice-listener.service';
+import { ChattingService } from '../voiceAssistant/chatting.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chattingService: ChattingService, private voiceListener: VoiceListenerService) { }
 
   ngOnInit() {
+    this.voiceListener.startRecognition();
+    this.voiceListener.recognisedCommand.subscribe(e => console.log(e));
   }
 
 }
