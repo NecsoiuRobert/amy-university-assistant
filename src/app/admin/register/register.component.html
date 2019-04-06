@@ -11,9 +11,14 @@
         <input type="text" formControlName="surname">
         <label>Grupa</label>
         <input type="text" formControlName="grupa">
+        <input type="checkbox" formControlName="sefGrupa">
+        <div>
+          <input type="checkbox" id="sefGrupa" formControlName="sefGrupa">
+          <label for="sefGrupa">Sef de grupa</label>
+        </div>
       </div>
       <button type="button" class="btn" [disabled]="!ableToRemove()" (click)="removeUser(i)">Sterge utilizator</button>
     </div>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn" [disabled]="!ableToAdd()">Submit</button>
 </form>

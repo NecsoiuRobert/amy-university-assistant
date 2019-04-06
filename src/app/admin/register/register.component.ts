@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/user';
+import { IdentityService } from 'src/app/user/identity.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
     users: new FormArray([])
   });
 
-  constructor() { }
+  constructor(private identityService: IdentityService) { }
 
   ngOnInit() {
     this.addUser();
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
         email: new FormControl(null, [Validators.required, Validators.email]),
         name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         surname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-        grupa: new FormControl(null, [Validators.required])
+        grupa: new FormControl(null, [Validators.required]),
+        sefGrupa: new FormControl(false)
       });
       (this.registerForm.get('users') as FormArray).push(userForm);
     } else {
@@ -56,8 +58,12 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       console.log('valid');
       const response = (this.registerForm.get('users')  as FormArray).value as User[];
+      for (let index = 0; index < this.usersControls.length; index++) {
+        const element = this.usersControls[index];
+        response[index].role = element.get('sefGrupa').value ? 'sef' : 'student';
+      }
       console.log(response);
-      // TODO send to FB functions
+      this.identityService.
     }
   }
 

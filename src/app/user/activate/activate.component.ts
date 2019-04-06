@@ -11,8 +11,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ActivateComponent implements OnInit {
 
+  // TODO: face data on account activation
+
   user: User = null;
-  userForm: FormGroup;
+  userForm: FormGroup = null;
 
   constructor(private identityService: IdentityService, private route: ActivatedRoute, private router: Router) { }
 
@@ -46,14 +48,15 @@ export class ActivateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.userForm)
+    console.log(this.userForm);
     if (this.userForm.valid) {
       const response = this.userForm.value as User;
-      this.identityService.registerIncompleteUser(response.email, response).then(
-        data => {
-          this.router.navigate(['login']);
-        }
-      );
+      console.log(response);
+      // this.identityService.registerIncompleteUser(this.user.email, response).then(
+      //   data => {
+      //     this.router.navigate(['login']);
+      //   }
+      // );
     }
   }
 

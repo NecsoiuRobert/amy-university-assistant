@@ -5,4 +5,5 @@ export interface User {
     surname: string;
     faceData: string;
     grupa: string;
+    role: string; // admin, student, sef
 }
