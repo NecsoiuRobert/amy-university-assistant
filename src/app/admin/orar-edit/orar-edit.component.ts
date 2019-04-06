@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { constructor } from 'q';
+import { OrarService } from 'src/app/services/orar.service';
+import { OrarEntry } from 'src/app/models/orar-entry';
 declare var $: any;
 
 @Component({
@@ -28,9 +30,17 @@ export class OrarEditComponent implements OnInit, AfterViewInit {
   types = ['Curs', 'Seminar', 'Laborator'];
   rooms = ['EC004', 'EC105', 'EC101', 'EC102'];
 
-  constructor() { }
+  orarEntries: OrarEntry[] = [];
+
+  constructor(private orarService: OrarService) { }
 
   ngOnInit() {
+    this.orarService.getOrarEntries(null, null).subscribe(
+      orarEntries => {
+        this.orarEntries = orarEntries;
+        console.log(orarEntries);
+      }
+    );
   }
 
   ngAfterViewInit() {
@@ -50,7 +60,11 @@ export class OrarEditComponent implements OnInit, AfterViewInit {
   onSubmit() {
     console.log(this.orarEntryForm);
     if (this.orarEntryForm.valid) {
-      console.log('valid');
+      const response = this.orarEntryForm.value as OrarEntry;
+      console.log(response);
+      this.orarService.addOrarEntry(response).then(
+        data => console.log(data)
+      );
     }
   }
 
