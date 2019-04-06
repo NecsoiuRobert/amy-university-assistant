@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
 import { IdentityService } from '../user/identity.service';
 
 @Component({
@@ -8,10 +11,36 @@ import { IdentityService } from '../user/identity.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _identityService: IdentityService) { }
+  loginForm: FormGroup;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  constructor(private identityService: IdentityService, private router: Router) { }
 
   ngOnInit() {
-    this._identityService.LoginWithEmailAndPassword('mihai.lupea@gmail.com', "123456");
+    this.loginForm = new FormGroup({'email': this.emailFormControl, 'password': this.passwordFormControl});
   }
 
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.identityService.LoginWithEmailAndPassword(
+        this.loginForm.get('email').value,
+        this.loginForm.get('password').value
+      ).then(
+        data => {
+          this.router.navigate(['home']);
+        }
+      ).catch(
+        error => {
+          this.loginForm.updateValueAndValidity();
+        }
+      );
+    }
+  }
 }
