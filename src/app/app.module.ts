@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { ActivateComponent } from './user/activate/activate.component';
 import { OrarEditComponent } from './admin/orar-edit/orar-edit.component';
 import { OrarComponent } from './user/orar/orar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { OrarComponent } from './user/orar/orar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
