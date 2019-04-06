@@ -15,9 +15,9 @@ export class AlertService {
   private _alertaEntriesObservable: Observable<Alert[]>;
   private _alertaEntriesSubject: Subject<Alert[]>;
 
-  public addAlert(oraData: Alert): Promise<any> {
+  public addAlert(alertaData: Alert): Promise<any> {
     return this._afDb.collection('Alerte').add(
-        { ...oraData, timestamp: firebase.database.ServerValue.TIMESTAMP }
+        { ...alertaData, timestamp: firebase.database.ServerValue.TIMESTAMP }
       );
   }
 
