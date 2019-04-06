@@ -63,7 +63,9 @@ export class RegisterComponent implements OnInit {
         response[index].role = element.get('sefGrupa').value ? 'sef' : 'student';
       }
       console.log(response);
-      this.identityService.
+      response.forEach(element => {        
+        this.identityService.registerIncompleteUser(element.email, element).then(data => console.log(data));
+      });
     }
   }
 

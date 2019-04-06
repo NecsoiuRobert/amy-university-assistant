@@ -21,12 +21,17 @@ export class ActivateComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params['id']) {
+        console.log('aaa');
         this.identityService.isUserRegistered(params['id']).then(result => {
+          console.log(result)
           if (result) {
             this.router.navigate(['login']);
+            console.log('aaa');
           } else {
+            console.log('aaa');
             this.identityService.getUserData(this.identityService.b64DecodeUnicode(params['id'])).toPromise().then(
               user => {
+                console.log(user);
                 this.user = user;
                 this.userForm = new FormGroup({
                   name: new FormControl(user.name, [ Validators.required, Validators.pattern('[a-zA-Z ]*')]),
@@ -52,11 +57,11 @@ export class ActivateComponent implements OnInit {
     if (this.userForm.valid) {
       const response = this.userForm.value as User;
       console.log(response);
-      // this.identityService.registerIncompleteUser(this.user.email, response).then(
-      //   data => {
-      //     this.router.navigate(['login']);
-      //   }
-      // );
+      this.identityService.registerIncompleteUser(this.user.email, response).then(
+        data => {
+          this.router.navigate(['login']);
+        }
+      );
     }
   }
 
