@@ -21,7 +21,7 @@ export class ActivateComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params['id']) {
-        console.log('aaa');
+        console.log(params['id']);
         this.identityService.isUserRegistered(params['id']).then(result => {
           console.log(result)
           if (result) {
@@ -42,6 +42,9 @@ export class ActivateComponent implements OnInit {
               }
             );
           }
+        })
+        .catch(error => {
+          console.log(error);
         });
       }
     });
