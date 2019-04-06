@@ -14,6 +14,7 @@ import { OrarEditComponent } from './admin/orar-edit/orar-edit.component';
 import { OrarComponent } from './user/orar/orar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './_core/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AccountComponent,
     HomeComponent,
     ActivateComponent,
-    OrarEditComponent
+    OrarEditComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
