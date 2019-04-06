@@ -16,10 +16,29 @@ admin.initializeApp();
 const nodeMailerTransport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'amy.univeristy.assistant@gmail.com',
+      user: 'kortana.assistant@gmail.com',
       pass: '123Asus!@#'
     }
 });
+
+function b64EncodeUnicode(str: any) {
+  // first we use encodeURIComponent to get percent-encoded UTF-8,
+  // then we convert the percent encodings into raw bytes which
+  // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+      // function toSolidBytes(match, p1) {
+      (match, p1) => {
+        // console.debug('match: ' + match);
+        return String.fromCharCode(("0x" + p1) as any);
+      }));
+}
+
+function b64DecodeUnicode(str) {
+  // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(atob(str).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
 
 exports.firestoreEmail = functions.firestore
     .document('Users/{user}')
@@ -45,7 +64,7 @@ exports.firestoreEmail = functions.firestore
         from: 'amy.university.assistant@gmail.com',
         to: user.email,
         subject: 'Amy - Activare cont',
-        html: templateActivare('http://localhost:4200/user/activate?id=' + userId) // TODO: pune url firebase pentru deploy
+        html: templateActivare('http://localhost:4200/user/activate?id=' + b64EncodeUnicode(user.email)) // TODO: pune url firebase pentru deploy
       };
       
       nodeMailerTransport.sendMail(mailOptions);
