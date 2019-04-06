@@ -20,6 +20,8 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestor
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+import { VoiceListenerService } from './voiceAssistant/voice-listener.service';
+import { ChattingService } from './voiceAssistant/chatting.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { environment } from 'src/environments/environment';
     AngularFireAuthModule,
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [VoiceListenerService, ChattingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
