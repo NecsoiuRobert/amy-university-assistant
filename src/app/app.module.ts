@@ -22,6 +22,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { VoiceListenerService } from './voiceAssistant/voice-listener.service';
 import { ChattingService } from './voiceAssistant/chatting.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ChattingService } from './voiceAssistant/chatting.service';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule,    
+    FlexLayoutModule
   ],
   providers: [VoiceListenerService, ChattingService],
   bootstrap: [AppComponent]
