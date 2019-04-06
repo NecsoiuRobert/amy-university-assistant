@@ -45,7 +45,7 @@ exports.firestoreEmail = functions.firestore
     .onCreate((event) => {
   
   const templateActivare = (url: string) => (
-    `Amy îți urează bun venit!,<br/><br/><br/>
+    `Kortana îți urează bun venit!,<br/><br/><br/>
     Pentru activarea contului accesează ${url}.    
     `
     )
