@@ -36,8 +36,8 @@ export class ActivateComponent implements OnInit {
                 this.userForm = new FormGroup({
                   name: new FormControl(user.name, [ Validators.required, Validators.pattern('[a-zA-Z ]*')]),
                   surname: new FormControl(user.surname, [ Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-                  password: new FormControl(null, [ Validators.required, Validators.minLength(6)]),
-                  passwordConfirm: new FormControl(null, [Validators.required, this.passwordConfirmValidator.bind(this)])
+                  password: new FormControl('', [ Validators.required, Validators.minLength(6)]),
+                  passwordConfirm: new FormControl('', [Validators.required, this.passwordConfirmValidator.bind(this)])
                 });
               }
             );
@@ -51,6 +51,7 @@ export class ActivateComponent implements OnInit {
   }
 
   passwordConfirmValidator(control: FormControl): {[s: string]: boolean} {
+    if (!this.userForm || !this.userForm.get('passowrd')) return null;
     if (control.value === this.userForm.get('passowrd').value) {return null; }
     return {'passwordsNotMatching': true};
   }
@@ -60,7 +61,8 @@ export class ActivateComponent implements OnInit {
     if (this.userForm.valid) {
       const response = this.userForm.value as User;
       console.log(response);
-      this.identityService.registerIncompleteUser(this.user.email, response).then(
+      response.email = this.user.email;
+      this.identityService.finishRegisterIncompleteUser(response).then(
         data => {
           this.router.navigate(['login']);
         }

@@ -1,11 +1,11 @@
-<form [formGroup]="userForm" *ngIf="userForm" (ngSubmit)="onSubmit()">
+<form  *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <label>Prenume</label>
   <input type="text" formControlName="name">  
   <label>Nume</label>
   <input type="text" formControlName="surname">  
   <label>Parola</label>
-  <input type="text" formControlName="password">  
+  <input type="password" formControlName="password">  
   <label>Confirma parola</label>
-  <input type="text" formControlName="passwordConfirm">
+  <input type="password" formControlName="passwordConfirm">
   <button class="btn" type="submit">Submit</button>
 </form>
