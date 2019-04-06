@@ -78,10 +78,7 @@ export class IdentityService {
   }
 
   public LoginWithEmailAndPassword(email: string, password: string): Promise<any> {
-    return this._afAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(authState => {
-          console.log(authState);
-        })
+    return this._afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
 
