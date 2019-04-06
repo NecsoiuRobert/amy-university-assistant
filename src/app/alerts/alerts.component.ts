@@ -34,6 +34,7 @@ export class AlertsComponent implements OnInit, AfterViewInit {
     console.log(this.alertForm);
     if (this.alertForm.valid) {
       const response = this.alertForm.value as Alert;
+      response.timestamp = new Date();
       console.log(response);
       // TODO add alert
     }
