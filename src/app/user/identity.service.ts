@@ -40,13 +40,15 @@ export class IdentityService {
       email = this._auth.email;
     }
 
+    console.log(email);
+
     if (isNullOrUndefined(this._userObservable[email])) {
       this._userObservable[email] = this._afDb
           .collection('Users')
           .doc(email)
           .snapshotChanges().pipe(map(snap => snap.payload.data() as User));
       this._userSubject[email] = new ReplaySubject(1);
-      this._userObservable[email].subscribe(user => this._userSubject[email].next(user));
+      this._userObservable[email].subscribe(user => {console.log("PULA"); this._userSubject[email].next(user)});
     }
 
     return this._userSubject[email].asObservable();
@@ -62,15 +64,17 @@ export class IdentityService {
     return this._afAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
   }
 
-  public async isUserRegistered(userKey: String): Promise<boolean> {
-    const email = this.b64DecodeUnicode(userKey);
-    let userData = await this.getUserData(email).toPromise();
+  public isUserRegistered(userKey: String): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const email = this.b64DecodeUnicode(userKey);
+      this.getUserData(email).subscribe(data => {
+        if (isNullOrUndefined(data.password)) {
+          resolve(false);
+        }
     
-    if (isNullOrUndefined(userData.password)) {
-      return false;
-    }
-
-    return true;
+        resolve(true);
+      })
+    })
   }
 
   public LoginWithEmailAndPassword(email: string, password: string): Promise<any> {

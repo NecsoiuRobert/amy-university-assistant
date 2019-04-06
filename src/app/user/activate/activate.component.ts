@@ -29,7 +29,7 @@ export class ActivateComponent implements OnInit {
             console.log('aaa');
           } else {
             console.log('aaa');
-            this.identityService.getUserData(this.identityService.b64DecodeUnicode(params['id'])).toPromise().then(
+            this.identityService.getUserData(this.identityService.b64DecodeUnicode(params['id'])).subscribe(
               user => {
                 console.log(user);
                 this.user = user;
