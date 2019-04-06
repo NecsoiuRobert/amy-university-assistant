@@ -1,3 +1,7 @@
-<p>
-  login works!
-</p>
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="loginForm">
+  <label>Email</label>
+  <input type="text" formControlName="email">
+  <label>Password</label>
+  <input type="password" formControlName="password" type="password">
+  <button mat-raised-button type="submit">Login</button>
+</form>
