@@ -16,12 +16,12 @@ export class IdentityService {
   private _authSubject: Subject<firebase.User>;
   private _auth: firebase.User;
   
-  private _userObservable: Observable<User>;
-  private _userSubject: Subject<User>;
+  private _userObservable: {[email: string]: Observable<User>} = {};
+  private _userSubject: {[email: string]: Subject<User>} = {};
 
   constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth) {
     this._authSubject = new ReplaySubject(1);
-    this._userSubject = new ReplaySubject(1);
+    // this._userSubject = new ReplaySubject(1);
   }
 
   public getFirebaseAuthState(): Observable<firebase.User> {
@@ -40,15 +40,16 @@ export class IdentityService {
       email = this._auth.email;
     }
 
-    if (isNullOrUndefined(this._userObservable)) {
-      this._userObservable = this._afDb
+    if (isNullOrUndefined(this._userObservable[email])) {
+      this._userObservable[email] = this._afDb
           .collection('Users')
           .doc(email)
           .snapshotChanges().pipe(map(snap => snap.payload.data() as User));
-      this._userObservable.subscribe(user => this._userSubject.next(user));
+      this._userSubject[email] = new ReplaySubject(1);
+      this._userObservable[email].subscribe(user => this._userSubject[email].next(user));
     }
 
-    return this._userSubject.asObservable();
+    return this._userSubject[email].asObservable();
   }
 
   public registerIncompleteUser(email: string, data: any): Promise<any> {
@@ -70,6 +71,13 @@ export class IdentityService {
     }
 
     return true;
+  }
+
+  public LoginWithEmailAndPassword(email: string, password: string): Promise<any> {
+    return this._afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then(authState => {
+          
+        })
   }
 
 
