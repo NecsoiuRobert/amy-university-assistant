@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Alert } from '../models/alert';
 import { AfterViewInit } from '@angular/core';
+import { AlertService } from '../services/alert.service';
 declare var $: any;
 
 @Component({
@@ -20,10 +21,15 @@ export class AlertsComponent implements OnInit, AfterViewInit {
   alerts: Alert[] = [];
   grupe = ['313CC', '335CA', '343C5'];
 
-  constructor() { }
+  constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-    // TODO get alerts
+    this.alertService.getAlerte(null).subscribe(
+      alerts => {
+        this.alerts = alerts;
+        console.log(alerts);
+      }
+    )
   }
   
   ngAfterViewInit() {
@@ -36,7 +42,9 @@ export class AlertsComponent implements OnInit, AfterViewInit {
       const response = this.alertForm.value as Alert;
       response.timestamp = new Date();
       console.log(response);
-      // TODO add alert
+      this.alertService.addAlert(response).then(data => {
+        console.log(data);
+      })
     }
   }
 

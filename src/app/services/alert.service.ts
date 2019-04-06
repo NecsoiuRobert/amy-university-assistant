@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Alert } from '../models/alert';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, ReplaySubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
@@ -10,7 +10,9 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class AlertService {
-  constructor(private _afDb: AngularFirestore) { }
+  constructor(private _afDb: AngularFirestore) {
+    this._alertaEntriesSubject = new ReplaySubject(1);
+  }
   
   private _alertaEntriesObservable: Observable<Alert[]>;
   private _alertaEntriesSubject: Subject<Alert[]>;
