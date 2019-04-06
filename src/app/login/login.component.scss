@@ -1,0 +1,100 @@
+.login-form{
+    max-width:400px;
+    margin:auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px rgba(83, 83, 83, 0.25);
+    padding:20px;
+    color:#0F2252;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #EEEEEE;
+    margin: 1em 0;
+    padding: 0; 
+}
+input{
+    color:#BAECFE;
+    border-bottom:1px solid #BAECFE;
+}
+label{
+    color:#BAECFE;
+}
+label:focus-within{
+    color:#28C7FF;
+}
+input:focus{
+    border-bottom:1px solid #28C7FF !important;
+    color:#28C7FF !important;
+    background-color: transparent;
+}
+
+input[_ngcontent-c2]:focus{
+    border-bottom:1px solid #28C7FF !important;
+    color:#28C7FF !important;
+    background-color: transparent !important;
+    box-shadow: 0 1px 0 0 #28C7FF !important;
+}
+.blue-button{
+border-radius: 3px;
+background: linear-gradient(270deg, #009BFF 0%, #00E0FF 100%);
+}
+.blue-button:hover
+{
+    background: linear-gradient(270deg, #009BFF 0%, #00E0FF 100%);
+    box-shadow: 0px 4px 10px rgba(0, 155, 255, 0.25);
+}
+.blue-button:focus{
+    background: linear-gradient(270deg, #009BFF 0%, #00E0FF 100%);
+    box-shadow: 0px 4px 10px rgba(0, 155, 255, 0.25);
+}
+.red-button{
+    border-radius: 3px;
+    background: linear-gradient(90deg, #FF8F8F 0%, #F93131 100%);
+    }
+.red-button:hover
+    {
+        background: linear-gradient(90deg, #FF8F8F 0%, #F93131 100%);
+        box-shadow: 0px 4px 10px rgba(220, 41, 41, 0.25);
+    }
+.red-button:focus{
+        background: linear-gradient(90deg, #FF8F8F 0%, #F93131 100%);
+        box-shadow: 0px 4px 10px rgba(220, 41, 41, 0.25);
+    }
+.yellow-button{
+        border-radius: 3px;
+        background:  linear-gradient(90deg, #FFC975 0%, #FF9F65 100%);
+        }
+.yellow-button:hover
+        {
+            background:  linear-gradient(90deg, #FFC975 0%, #FF9F65 100%);
+            box-shadow: 0px 4px 10px rgba(255, 159, 101, 0.25);
+        }
+.yellow-button:focus{
+            background:  linear-gradient(90deg, #FFC975 0%, #FF9F65 100%);
+            box-shadow: 0px 4px 10px rgba(255, 159, 101, 0.25);
+        }
+button {
+    display: inline-block;
+    border: none;
+    width:100%;
+    padding: 10px;
+    padding-left:3em;
+    padding-right:3em;
+    margin-top:10px;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+
+button:active {
+    transform: scale(0.99);
+}

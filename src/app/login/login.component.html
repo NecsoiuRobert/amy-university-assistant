@@ -1,7 +1,20 @@
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="loginForm">
-  <label>Email</label>
-  <input type="text" formControlName="email">
-  <label>Password</label>
-  <input type="password" formControlName="password" type="password">
-  <button mat-raised-button type="submit">Login</button>
+  <p style="font-size:1.5em; text-align:center;">Intra in cont</p>
+  <hr>
+  <div>
+      <label for="email">Email
+      <input type="text" formControlName="email" id="email" name="email">
+    </label>
+  </div>
+<div>
+    <label for="password">Password
+    <input type="password" formControlName="password" id="password">
+  </label>
+</div>
+  
+  <button class="blue-button" mat-raised-button type="submit">Login</button>
+  <p style="text-align: center;">SAU</p>
+  <button class="blue-button" mat-raised-button type="submit">Login with Facebook</button>
+  <button class="red-button" mat-raised-button type="submit">Login with Google</button>
+  <button class="yellow-button" mat-raised-button type="submit">Login with face detection</button>
 </form>
