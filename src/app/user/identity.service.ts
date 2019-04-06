@@ -51,9 +51,14 @@ export class IdentityService {
     return this._userSubject.asObservable();
   }
 
-  public addIncompleteUser(userData: User): Promise<any> {
+  public registerIncompleteUser(email: string, data: any): Promise<any> {
+    return this._afDb.collection('Users').doc(email).set(data, { merge: true });
+  }
+
+  public async finishRegisterIncompleteUser(userData: User): Promise<any> {
     const accountKey = this.b64EncodeUnicode(userData.email);
-    return this._afDb.collection('Users').doc(userData.email).set(userData, { merge: true })
+    await this._afDb.collection('Users').doc(userData.email).set(userData, { merge: true });
+    return this._afAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password);
   }
 
   public async isUserRegistered(userKey: String): Promise<boolean> {
