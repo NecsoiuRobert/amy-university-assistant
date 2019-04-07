@@ -2,17 +2,19 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Output, EventE
 
 
 import * as faceapi from 'face-api.js';
-import { loadFaceDetectionModel } from 'face-api.js';
+import { FaceMatcher } from 'face-api.js';
 import { Subject } from 'rxjs';
+import { IdentityService } from 'src/app/user/identity.service';
+import { isNullOrUndefined } from 'util';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-face-auth',
-  templateUrl: './face-auth.component.html',
-  styleUrls: ['./face-auth.component.sass']
+  selector: 'app-face-match',
+  templateUrl: './face-match.component.html',
+  styleUrls: ['./face-match.component.sass']
 })
-export class FaceAuthComponent {
+export class FaceMatchComponent {
   @ViewChild("video")
   public video: ElementRef;
 
@@ -20,14 +22,20 @@ export class FaceAuthComponent {
   
   MODEL_URL="assets/";
 
+  private _faceMatcher: faceapi.FaceMatcher; 
   public photosCount: number = 0;
   private _interval: any;
-  constructor(private changeDetector : ChangeDetectorRef) { }
+  constructor(private changeDetector : ChangeDetectorRef, private _identityService: IdentityService) { }
   
   async loadFaceDetection(): Promise<boolean> {
     await faceapi.loadTinyFaceDetectorModel(this.MODEL_URL);
     await faceapi.loadFaceRecognitionModel(this.MODEL_URL);
     await faceapi.loadFaceLandmarkTinyModel(this.MODEL_URL);
+    let userFaces = this._identityService.getUsersFaces().subscribe(users => {
+      this._faceMatcher = new FaceMatcher(users);
+    });
+    
+    
     return true;
   }
 
@@ -39,7 +47,7 @@ export class FaceAuthComponent {
     return false;
   }
 
-  userFaceData: Float32Array[] = [];
+  userFaceData: any[] = [];
 
   async initAndGetFaces(facesCount: number) {
     await this.loadFaceDetection();
@@ -54,16 +62,18 @@ export class FaceAuthComponent {
         subj.next(face.descriptor);
         canvas.width = face.detection.box.width;
         canvas.height = face.detection.box.height;
-        // (canvas.getContext('2d') as CanvasRenderingContext2D).drawImage(this, face.detection.box.left, face.detection.box.top, face.detection.box.width, face.detection.box.height, 0, 0, face.detection.box.width, face.detection.box.height);
       }
     }, false);
 
     subj.asObservable().subscribe(a => {
-      facesCount -= 1;
-      this.userFaceData.push(a);
+      
+      if (!isNullOrUndefined(this._faceMatcher)) {
+        facesCount -= 1;        
+        this.userFaceData.push(this._faceMatcher.findBestMatch(a).label);
+      }
+
       if (facesCount === 0) {
         $('#video').replaceWith($('#video').clone());
-        
         this.changeDetector.detectChanges();
         this.finishedRegistering.emit(this.userFaceData);
         this._stopMedia.stop();

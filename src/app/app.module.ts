@@ -24,6 +24,7 @@ import { VoiceListenerService } from './voiceAssistant/voice-listener.service';
 import { ChattingService } from './voiceAssistant/chatting.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FaceAuthComponent } from './faceAuth/face-auth/face-auth.component';
+import { FaceMatchComponent } from './faceAuth/face-match/face-match.component';
 //const dat = (JSON.parse(strf) as any[]).map(item => new Float32Array(Object.values(item)));
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FaceAuthComponent } from './faceAuth/face-auth/face-auth.component';
     ActivateComponent,
     OrarEditComponent,
     NavbarComponent,
-    FaceAuthComponent
+    FaceAuthComponent,
+    FaceMatchComponent
   ],
   imports: [
     BrowserModule,
