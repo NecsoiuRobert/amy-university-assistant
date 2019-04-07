@@ -57,4 +57,11 @@ margin-right:5px;
     border-radius:100px;
     padding:20px;
     box-shadow: 0px 4px 50px rgba(83, 83, 83, 0.25);
+    opacity:0.5;
+}
+.circle-button:hover{
+    opacity:1;
+}
+.circle-button:focus{
+    opacity:1;
 }
