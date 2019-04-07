@@ -1,0 +1,50 @@
+span.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+span.welcome {
+    padding-right: 5px;
+}
+
+.companyName{
+    font-size: 150%;
+}
+
+.mat-toolbar{
+  height: 7vh;
+}
+
+div {
+    overflow: inherit;
+}
+
+.mat-sidenav-container{
+  min-height: 93vh !important;
+}
+
+a{
+    text-decoration: none;
+    font-size: 110%;
+    white-space: normal;
+}
+
+button{
+    font-size: 110%;
+    min-width: min-content;
+}
+
+.example-icon {
+padding: 0 14px;
+}
+
+.mat-sidenav-content{
+    font-size: 200%;
+    text-align: center;
+}
+
+.logo {
+    width: auto;
+    height: 90%;
+    cursor: pointer;
+    padding: 0 10px;
+}
