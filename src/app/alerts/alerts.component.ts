@@ -24,6 +24,7 @@ export class AlertsComponent implements OnInit, AfterViewInit {
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
+    // TODO filter pt grupa user
     this.alertService.getAlerte(null).subscribe(
       alerts => {
         this.alerts = alerts;
@@ -44,6 +45,7 @@ export class AlertsComponent implements OnInit, AfterViewInit {
       console.log(response);
       this.alertService.addAlert(response).then(data => {
         console.log(data);
+        this.alertForm.reset();
       })
     }
   }

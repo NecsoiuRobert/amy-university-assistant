@@ -11,31 +11,9 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #EEEEEE;
+    border-top: 1px solid rgb(148, 115, 115);
     margin: 1em 0;
     padding: 0; 
-}
-input{
-    color:#BAECFE;
-    border-bottom:1px solid #BAECFE;
-}
-label{
-    color:#BAECFE;
-}
-label:focus-within{
-    color:#28C7FF;
-}
-input:focus{
-    border-bottom:1px solid #28C7FF !important;
-    color:#28C7FF !important;
-    background-color: transparent;
-}
-
-input[_ngcontent-c2]:focus{
-    border-bottom:1px solid #28C7FF !important;
-    color:#28C7FF !important;
-    background-color: transparent !important;
-    box-shadow: 0 1px 0 0 #28C7FF !important;
 }
 .blue-button{
 border-radius: 3px;

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('password').value
       ).then(
         data => {
-          this.router.navigate(['home']);
+          this.router.navigate(['account']);
         }
       ).catch(
         error => {
@@ -79,7 +79,12 @@ export class LoginComponent implements OnInit {
       }
       
     })
+  }
 
     // this.loginForm.get('faceData').setValue(JSON.stringify(data).toString());
+  loginWithGoogle() {
+    this.identityService.googleLogin().then(data => {
+      this.router.navigate(['user', 'account']);
+    })
   }
 }

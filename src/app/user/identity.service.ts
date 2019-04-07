@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 import { FirebaseAuth } from '@angular/fire';
 import { isNullOrUndefined, isNull } from 'util';
 import { User } from '../models/user';
+import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 import * as faceapi from 'face-api.js';
 
@@ -25,7 +27,7 @@ export class IdentityService {
   private _usersFacesObservable: Observable<faceapi.LabeledFaceDescriptors[]>;
   private _usersFacesSubject: Subject<faceapi.LabeledFaceDescriptors[]>;
 
-  constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth) {
+  constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth, private router: Router) {
     this._authSubject = new ReplaySubject(1);
     this._usersFacesSubject = new ReplaySubject(1);
     // this._userSubject = new ReplaySubject(1);
@@ -106,7 +108,19 @@ export class IdentityService {
     return this._afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const promise = this._afAuth.auth.signInWithPopup(provider);
+    promise.then(credential =>  {
+      //this.updateUser(credential.user);
+    });
+    return promise;
+  }
 
+  signOut() {
+    this._afAuth.auth.signOut();
+    this.router.navigate(['/home']);
+  }
 
   public b64EncodeUnicode(str: any) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
