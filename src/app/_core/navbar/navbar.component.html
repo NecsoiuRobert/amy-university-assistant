@@ -7,20 +7,21 @@
     </div>
     
     <img routerLink="/home" fxHide.lt-md="true" class="logo" src="../../../assets/images/logo.svg" >  
-    <!-- <span class="welcome" *ngIf="user">{{navbarTexts.hello[selectedLang]}}, {{user.firstName}}!</span> -->
+    <span class="welcome" *ngIf="user">Buna, {{user.name}}!</span>
     <span class="fill-remaining-space"></span>
-    <mat-icon fxHide.gt-sm="true" (click)="logout()">meeting_room</mat-icon>
+    <mat-icon fxHide.gt-sm="true" (click)="logout()" *ngIf="user">meeting_room </mat-icon>
     <img routerLink="/home" fxHide.gt-sm="true" class="logo" src="../../../assets/images/logo.svg" alt="PW-Cinema"> 
     
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="/login" >Login</a>
+      <a mat-button routerLink="/login" *ngIf="!user">Login</a>
+      <button mat-raised-button *ngIf="user" (click)="logout()">Deconectare</button>
     </div>
     
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container content">
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-        <a mat-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/login" *ngIf="!user">Login</a>
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

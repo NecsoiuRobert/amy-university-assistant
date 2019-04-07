@@ -16,6 +16,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.identityService.getFirebaseAuthState().subscribe(data1 => { 
       console.log(data1)
+      if (data1 && data1.email)
       this.identityService.getUserData(data1.email).subscribe(data => {
         console.log(data);
         this.user = data;
