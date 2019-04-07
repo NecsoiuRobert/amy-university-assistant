@@ -5,6 +5,7 @@ import { IdentityService } from 'src/app/user/identity.service';
 import { User } from 'src/app/models/user';
 import { ChattingService } from 'src/app/voiceAssistant/chatting.service';
 import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-navbar',
@@ -23,15 +24,25 @@ export class NavbarComponent implements OnInit {
       if (data1! && data1.email) {
         this.identityService.getUserData(data1.email).subscribe(data => {
           console.log(data);
+          this._chattingService.activate_listener();
           this.user = data;
         });
       }
     })
 
-    this._chattingService.finishedCommand.subscribe(command => {
-      switch(command) {
-        case 'nav.show_orar':
-        this.router.navigate(['user', 'orar']);
+    this._chattingService.finishedCommand.asObservable().subscribe(command => {
+      console.log(command);
+      if (command.intentName) {
+        switch(command.intentName) {
+          case 'nav.show_orar':
+            if (isNullOrUndefined(command.any) || command.any === '') {
+              this.router.navigate(['user', 'orar']);
+            }
+            break;
+          case 'nav.show_anunturi':
+            this.router.navigate(['user', 'anunturi']);
+            break;
+        }
       }
     })
   }

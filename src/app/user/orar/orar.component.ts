@@ -3,6 +3,8 @@ import { OrarEntry } from 'src/app/models/orar-entry';
 import { OrarService } from 'src/app/services/orar.service';
 import { User } from 'src/app/models/user';
 import { IdentityService } from '../identity.service';
+import { ChattingService } from 'src/app/voiceAssistant/chatting.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-orar',
@@ -19,7 +21,7 @@ export class OrarComponent implements OnInit {
   selectedEntry: OrarEntry = null;
   user: User;
 
-  constructor(private orarService: OrarService, private identityService: IdentityService) { }
+  constructor(private orarService: OrarService, private identityService: IdentityService, private _chattingService: ChattingService) { }
 
   ngOnInit() {
     
@@ -41,6 +43,21 @@ export class OrarComponent implements OnInit {
           }
         );
       });
+    })
+
+    this._chattingService.finishedCommand.asObservable().subscribe(command => {
+      console.log(command);
+      if (command.intentName, "in orar") {
+        switch(command.intentName) {
+          case 'nav.show_orar':
+            if (!isNullOrUndefined(command.any)) {
+              let zile = ['duminica', 'luni', 'marti', 'miercuri', 'joi', 'vineri', 'sambata'];
+              let zi = (command.any.normalize('NFD').replace(/[\u0300-\u036f]/g, "") as string).toLocaleLowerCase();
+              if (zile.indexOf(zi) > -1)
+                this.dayIndex = zile.indexOf(zi)
+            }
+        }
+      }
     })
     this.dayIndex = new Date().getDay();
   }
