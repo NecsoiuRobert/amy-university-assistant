@@ -13,25 +13,27 @@
     <img routerLink="/home" fxHide.gt-sm="true" class="logo" src="../../../assets/images/logo.svg" alt="PW-Cinema"> 
     
     <div fxShow="true" fxHide.lt-md="true">
-      <a class="btn blue-button" routerLink="/login" *ngIf="!user">Login</a>
-      <a class="btn blue-button" routerLink="/alerts" *ngIf="user && user.role !== 'admin'">Anunturi</a>
-      <a class="btn blue-button" routerLink="/user/orar" *ngIf="user && user.role !== 'admin'">Orar</a>
-      <a class="btn blue-button" routerLink="/user/account" *ngIf="user && user.role !== 'admin'">Acasa</a>
-      <a class="btn blue-button" routerLink="/admin/orar" *ngIf="user && user.role === 'admin'">Adauga ore</a>
-      <a class="btn blue-button" routerLink="/admin/register" *ngIf="user && user.role === 'admin'">Adauga studenti</a>
-      <button mat-raised-button *ngIf="user" (click)="logout()">Deconectare</button>
+     
+      <a class="button blue-button" routerLink="/login" *ngIf="!user">Login</a>
+      <a class="button blue-button" routerLink="/alerts" *ngIf="user && user.role !== 'admin'">Anunturi</a>
+      <a class="button blue-button" routerLink="/user/orar" *ngIf="user && user.role !== 'admin'">Orar</a>
+      <a class="button blue-button" routerLink="/user/account" *ngIf="user && user.role !== 'admin'">Acasa</a>
+      <a class="button blue-button" routerLink="/admin/orar" *ngIf="user && user.role === 'admin'">Adauga ore</a>
+      <a class="button blue-button" routerLink="/admin/register" *ngIf="user && user.role === 'admin'">Adauga studenti</a>
+      <button class="button red-button" mat-raised-button *ngIf="user" (click)="logout()">Deconectare</button>
     </div>
     
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container content">
     <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-        <a class="btn blue-button" routerLink="/login" *ngIf="!user">Login</a>
-        <a class="btn blue-button" routerLink="/alerts" *ngIf="user && user.role !== 'admin'">Anunturi</a>
-        <a class="btn blue-button" routerLink="/user/orar" *ngIf="user && user.role !== 'admin'">Orar</a>
-        <a class="btn blue-button" routerLink="/user/account" *ngIf="user && user.role !== 'admin'">Acasa</a>
-        <a class="btn blue-button" routerLink="/admin/orar" *ngIf="user && user.role === 'admin'">Adauga ore</a>
-        <a class="btn blue-button" routerLink="/admin/register" *ngIf="user && user.role === 'admin'">Adauga studenti</a>
+        
+        <a class="button blue-button" routerLink="/login" *ngIf="!user">Login</a>
+        <a class="button blue-button" routerLink="/alerts" *ngIf="user && user.role !== 'admin'">Anunturi</a>
+        <a class="button blue-button" routerLink="/user/orar" *ngIf="user && user.role !== 'admin'">Orar</a>
+        <a class="button blue-button" routerLink="/user/account" *ngIf="user && user.role !== 'admin'">Acasa</a>
+        <a class="button blue-button" routerLink="/admin/orar" *ngIf="user && user.role === 'admin'">Adauga ore</a>
+        <a class="button blue-button" routerLink="/admin/register" *ngIf="user && user.role === 'admin'">Adauga studenti</a>
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

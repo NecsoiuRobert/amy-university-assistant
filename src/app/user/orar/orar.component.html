@@ -25,7 +25,7 @@
 
   <div class="orar-body col s8 m6 l6">
     <div style="margin-bottom: 10px" fxLayout="column" fxLayoutAlign="space-around center" >
-      <div (click)="setIndexToday()" class="button blue-button" >Agenda zilei</div>
+      <div (click)="setIndexToday()" class="agenda button blue-button" >Agenda zilei</div>
       <div><span (click)="decrementDayIndex()"><img src="../../../assets/images/arrow_left.svg"></span><span style="margin-right:10px;margin-left:10px;" >{{days[dayIndex]}}</span><span (click)="incrementDayIndex()"><img src="../../../assets/images/arrow_right.svg"></span></div>
     </div>
     <div *ngFor="let entry of filterEntries()">
