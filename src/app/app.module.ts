@@ -22,10 +22,10 @@ import { environment } from 'src/environments/environment';
 import { VoiceListenerService } from './voiceAssistant/voice-listener.service';
 import { ChattingService } from './voiceAssistant/chatting.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FaceAuthComponent } from './faceAuth/face-auth/face-auth.component';
 import { FaceMatchComponent } from './faceAuth/face-match/face-match.component';
 import { MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule, MatSidenav, MatMenuModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FaceAuthComponent } from './faceAuth/face-auth/face-auth.component';
 
 //const dat = (JSON.parse(strf) as any[]).map(item => new Float32Array(Object.values(item)));
 @NgModule({

@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { IdentityService } from '../user/identity.service';
 import { FaceMatchComponent } from '../faceAuth/face-match/face-match.component';
 import { isNullOrUndefined } from 'util';
+import { ChattingService } from '../voiceAssistant/chatting.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     Validators.required
   ]);
 
-  constructor(private identityService: IdentityService, private router: Router) { }
+  constructor(private identityService: IdentityService, private router: Router, private _chattingService: ChattingService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({'email': this.emailFormControl, 'password': this.passwordFormControl});
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
       ).then(
         data => {
           this.router.navigate(['user', 'account']);
+          this._chattingService.activate_listener();
         }
       ).catch(
         error => {

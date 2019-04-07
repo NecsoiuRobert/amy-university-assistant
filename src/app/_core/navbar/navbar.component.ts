@@ -3,6 +3,7 @@ declare var $: any;
 import * as M from 'materialize-css';
 import { IdentityService } from 'src/app/user/identity.service';
 import { User } from 'src/app/models/user';
+import { ChattingService } from 'src/app/voiceAssistant/chatting.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   user: User;
 
-  constructor(private elRef: ElementRef, private identityService: IdentityService, private router: Router) { }
+  constructor(private elRef: ElementRef, private identityService: IdentityService, private _chattingService: ChattingService, private router: Router) { }
 
   ngOnInit() {
     this.identityService.getFirebaseAuthState().subscribe(data1 => { 
@@ -24,7 +25,13 @@ export class NavbarComponent implements OnInit {
           console.log(data);
           this.user = data;
         });
+      }
+    })
 
+    this._chattingService.finishedCommand.subscribe(command => {
+      switch(command) {
+        case 'nav.show_orar':
+        this.router.navigate(['user', 'orar']);
       }
     })
   }
