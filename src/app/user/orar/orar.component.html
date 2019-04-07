@@ -1,54 +1,62 @@
-<div class="content">
-    <div class="filter-body">
-        <div style=" max-width: 300px;" (click)="typeIndex=0">
-            <div class="circle" [style.background-color]="getColor(types[0])"></div>
-            <p class="title-entry">Toate</p>
+<div class="row">
+
+  <div class="filter-body col s4 m2 l2">
+    <div style=" max-width: 300px;" (click)="typeIndex=0">
+      <div class="circle" [style.background-color]="getColor(types[0])"></div>
+      <p class="hide-on-med-and-down title-entry">Toate</p>
+      <p class="hide-on-large-only title-entry">*</p>
+    </div>
+    <div style="max-width: 300px;" (click)="typeIndex=1">
+      <div class="circle" [style.background-color]="getColor(types[1])"></div>
+      <p class="hide-on-med-and-down title-entry">Cursuri</p>
+      <p class="hide-on-large-only title-entry">Cs</p>
+    </div>
+    <div style=" max-width: 300px;" (click)="typeIndex=2">
+      <div class="circle" [style.background-color]="getColor(types[2])"></div>
+      <p class="hide-on-med-and-down title-entry">Laboratoare</p>
+      <p class="hide-on-large-only title-entry">Lab</p>
+    </div>
+    <div style=" max-width: 300px;" (click)="typeIndex=3">
+      <div class="circle" [style.background-color]="getColor(types[3])"></div>
+      <p class="hide-on-med-and-down title-entry">Seminarii</p>
+      <p class="hide-on-large-only title-entry">Sem</p>
+    </div>
+  </div>
+
+  <div class="orar-body col s8 m6 l6">
+    <div style="margin-bottom: 10px" fxLayout="column" fxLayoutAlign="space-around center" >
+      <div (click)="setIndexToday()" class="button blue-button" >Agenda zilei</div>
+      <div><span (click)="decrementDayIndex()"><img src="../../../assets/images/arrow_left.svg"></span><span style="margin-right:10px;margin-left:10px;" >{{days[dayIndex]}}</span><span (click)="incrementDayIndex()"><img src="../../../assets/images/arrow_right.svg"></span></div>
+    </div>
+    <div *ngFor="let entry of filterEntries()">
+      <div class="orar-entry" (click)="selectEntry(entry)">
+        <div style="display:inline-block; max-width: 300px;">
+          <div class="circle" [style.background-color]="getColor(entry.type)"></div>
+          <p class="hide-on-small-and-down title-entry">{{entry.title}}</p>
+          <p class="hide-on-med-and-up title-entry">{{entry.acronim}}</p>
         </div>
-        <div style="max-width: 300px;" (click)="typeIndex=1">
-            <div class="circle" [style.background-color]="getColor(types[1])"></div>
-            <p class="title-entry">Cursuri</p>
-        </div>
-        <div style=" max-width: 300px;" (click)="typeIndex=2">
-            <div class="circle" [style.background-color]="getColor(types[2])"></div>
-            <p class="title-entry">Laboratoare</p>
-        </div>
-        <div style=" max-width: 300px;" (click)="typeIndex=3">
-            <div class="circle" [style.background-color]="getColor(types[3])"></div>
-            <p class="title-entry">Seminarii</p>
+        <div style="float:right; display:inline-block; color: #0F2252;padding:10px;">
+          <span >{{entry.room}}</span> 
+          <br>
+          <span>{{entry.hour}}-</span>
+          <span>{{entry.hour + entry.duration}}</span>
         </div>
       </div>
-      <div class="orar-body">
-        <div style="display: block; margin:auto; max-width: 100px;margin-bottom:10px;">
-            <div (click)="setIndexToday()" class="button blue-button" >Agenda zilei</div>
-            <span (click)="decrementDayIndex()"><img src="../../../assets/images/arrow_left.svg"></span><span style="margin-right:10px;margin-left:10px;" >{{days[dayIndex]}}</span><span (click)="incrementDayIndex()"><img src="../../../assets/images/arrow_right.svg"></span>
-        </div>
-          <div *ngFor="let entry of filterEntries()">
-              <div class="orar-entry" (click)="selectEntry(entry)">
-                <div style="display:inline-block; max-width: 300px;">
-                    <div class="circle" [style.background-color]="getColor(entry.type)"></div>
-                    <p class="title-entry">{{entry.title}}</p>
-                </div>
-                  <div style="float:right; display:inline-block; color: #0F2252;padding:10px;">
-                      <span >{{entry.room}}</span> 
-                      <br>
-                      <span>{{entry.hour}}-</span>
-                      <span>{{entry.hour + entry.duration}}</span>
-                  </div>
-              </div>
-             
-            </div>    
-        </div>
-        <div class="descriere-body" *ngIf="selectedEntry">
-            <p>{{selectedEntry.title}}</p>
-            <hr>
-            <p>Profesor: {{selectedEntry.professor}}</p>
-            <p>Interval orar: {{selectedEntry.hour}}-{{selectedEntry.hour + selectedEntry.duration}}</p>
-            <p>Sala: {{selectedEntry.room}}</p>
-            <p>Descriere curs: {{selectedEntry.description}}<br>
-            </p>
-            <div (click)="navigate()" class="button yellow-button" ><img style="margin-right: 5px;" src="../../../assets/images/get_directions.svg" >Navigare</div>
-          </div>
-        <div class="circle-button">
-          <img src="../../../assets/images/kortana_icon.svg" style="max-width: 100%;">
-        </div>
+      
+    </div>    
+  </div>
+  <div class="descriere-body col s12 m4 l3 offset-l1" *ngIf="selectedEntry">
+    <p>{{selectedEntry.title}}</p>
+    <hr>
+    <p>Profesor: {{selectedEntry.professor}}</p>
+    <p>Interval orar: {{selectedEntry.hour}}-{{selectedEntry.hour + selectedEntry.duration}}</p>
+    <p>Sala: {{selectedEntry.room}}</p>
+    <p>Descriere curs: {{selectedEntry.description}}<br>
+    </p>
+    <div (click)="navigate()" class="button yellow-button" ><img style="margin-right: 5px;" src="../../../assets/images/get_directions.svg" >Navigare</div>
+  </div>
+  <div class="circle-button">
+    <img src="../../../assets/images/kortana_icon.svg" style="max-width: 100%;">
+  </div>
+  
 </div>
