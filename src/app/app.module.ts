@@ -55,7 +55,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FlexLayoutModule,
     MatSidenavModule,
     MatIconModule,
-    MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     BrowserAnimationsModule,
