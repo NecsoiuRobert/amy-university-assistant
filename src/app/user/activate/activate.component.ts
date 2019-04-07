@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-activate',
   templateUrl: './activate.component.html',
-  styleUrls: ['./activate.component.sass']
+  styleUrls: ['./activate.component.scss']
 })
 export class ActivateComponent implements OnInit {
 
