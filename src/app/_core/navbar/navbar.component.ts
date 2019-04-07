@@ -37,7 +37,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.identityService.signOut();
+    this.identityService.signOut().then(
+      data => {
+        this.user = null;
+        this.router.navigate(['home']);
+      }
+    );
   }
 
 }
