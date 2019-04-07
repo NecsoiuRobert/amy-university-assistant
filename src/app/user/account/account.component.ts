@@ -14,10 +14,13 @@ export class AccountComponent implements OnInit {
   constructor(private identityService: IdentityService) { }
 
   ngOnInit() {
-    this.identityService.getUserData(null).subscribe(data => {
-      console.log(data);
-      this.user = data;
-    });
+    this.identityService.getFirebaseAuthState().subscribe(data1 => { 
+      console.log(data1)
+      this.identityService.getUserData(data1.email).subscribe(data => {
+        console.log(data);
+        this.user = data;
+      });
+    })
   }
 
 }
