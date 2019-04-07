@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 import { FirebaseAuth } from '@angular/fire';
 import { isNullOrUndefined } from 'util';
 import { User } from '../models/user';
+import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class IdentityService {
   private _userObservable: {[email: string]: Observable<User>} = {};
   private _userSubject: {[email: string]: Subject<User>} = {};
 
-  constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth) {
+  constructor(private _afDb: AngularFirestore, private _afAuth: AngularFireAuth, private router: Router) {
     this._authSubject = new ReplaySubject(1);
     // this._userSubject = new ReplaySubject(1);
   }
@@ -81,7 +83,19 @@ export class IdentityService {
     return this._afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const promise = this._afAuth.auth.signInWithPopup(provider);
+    promise.then(credential =>  {
+      //this.updateUser(credential.user);
+    });
+    return promise;
+  }
 
+  signOut() {
+    this._afAuth.auth.signOut();
+    this.router.navigate(['/home']);
+  }
 
   public b64EncodeUnicode(str: any) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,

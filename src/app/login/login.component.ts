@@ -44,4 +44,10 @@ export class LoginComponent implements OnInit {
       );
     }
   }
+
+  loginWithGoogle() {
+    this.identityService.googleLogin().then(data => {
+      this.router.navigate(['user', 'account']);
+    })
+  }
 }

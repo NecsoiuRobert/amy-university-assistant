@@ -14,6 +14,7 @@ export class OrarComponent implements OnInit {
   dayIndex: number;
   types = ['Toate', 'Curs', 'Laborator', 'Seminar'];
   typeIndex = 0;
+  selectedEntry: OrarEntry = null;
 
   constructor(private orarService: OrarService) { }
 
@@ -53,20 +54,27 @@ export class OrarComponent implements OnInit {
   incrementDayIndex() {
     this.dayIndex = this.dayIndex + 1;
     if (this.dayIndex === 7) this.dayIndex = 0;
+    this.selectedEntry = null;
   }
 
   decrementDayIndex() {
     this.dayIndex = this.dayIndex - 1;
     if (this.dayIndex === -1) this.dayIndex = 6;
+    this.selectedEntry = null;
   }
 
   setIndexToday() {
     this.dayIndex = new Date().getDay();
+    this.selectedEntry = null;
   }
 
   navigate() {
     const url = 'https://www.google.com/maps?saddr=My+Location&daddr=Computer+Science+College,+Splaiul+Independenței+313,+București';
     window.open(url, '_blank');
+  }
+
+  selectEntry(entry) {
+    this.selectedEntry = entry;
   }
 
 }
