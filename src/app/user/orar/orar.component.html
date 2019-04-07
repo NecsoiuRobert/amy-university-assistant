@@ -1,15 +1,44 @@
-<div class="orar-body">
-    <div *ngFor="let entry of orarEntries.slice(0, 1)">
-        <div class="orar-entry">
-            <p>{{entry.title}}</p>
-            <p>{{entry.acronim}}</p>
-            <p>{{entry.description}}</p>
-            <p>{{entry.professor}}</p>
-            <p>{{entry.type}}</p>
-            <p>{{entry.room}}</p>
-            <p>{{entry.hour + entry.duration}}</p>
-            <p></p>
+<div class="content">
+    <div class="filter-body">
+        <div style=" max-width: 300px;" (click)="typeIndex=0">
+            <div class="circle" [style.background-color]="getColor(types[0])"></div>
+            <p class="title-entry">Toate</p>
         </div>
-      
-      </div>    
-  </div>
+        <div style="max-width: 300px;" (click)="typeIndex=1">
+            <div class="circle" [style.background-color]="getColor(types[1])"></div>
+            <p class="title-entry">Cursuri</p>
+        </div>
+        <div style=" max-width: 300px;" (click)="typeIndex=2">
+            <div class="circle" [style.background-color]="getColor(types[2])"></div>
+            <p class="title-entry">Laboratoare</p>
+        </div>
+        <div style=" max-width: 300px;" (click)="typeIndex=3">
+            <div class="circle" [style.background-color]="getColor(types[3])"></div>
+            <p class="title-entry">Seminarii</p>
+        </div>
+      </div>
+      <div class="orar-body">
+        <div style="display: block; margin:auto; max-width: 100px;">
+            <span (click)="decrementDayIndex()"><img src="../../../assets/images/arrow_left.svg"></span>{{days[dayIndex]}}<span (click)="incrementDayIndex()"><img src="../../../assets/images/arrow_right.svg"></span>
+
+        </div>
+          <div *ngFor="let entry of filterEntries()">
+              <div class="orar-entry">
+                <div style="display:inline-block; max-width: 300px;">
+                    <div class="circle" [style.background-color]="getColor(entry.type)"></div>
+                    <p class="title-entry">{{entry.title}}</p>
+                </div>
+                  <div style="float:right; display:inline-block; color: rgba(41, 191, 246, 0.4);padding:10px;">
+                      <span >{{entry.room}}</span> 
+                      <br>
+                      <span>{{entry.hour}}-</span>
+                      <span>{{entry.hour + entry.duration}}</span>
+                  </div>
+              </div>
+             
+            </div>    
+        </div>
+        <div class="descriere-body">
+            adasda
+          </div>
+</div>

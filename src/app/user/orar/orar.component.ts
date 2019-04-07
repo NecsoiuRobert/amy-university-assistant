@@ -33,6 +33,14 @@ export class OrarComponent implements OnInit {
     );
   }
 
+  getColor(type) {
+    if (type === 'Toate') return '#00E0FF';
+    if (type === 'Curs') return '#FFC975';
+    if (type === 'Laborator') return '#9CFF75';
+    if (type === 'Seminar') return '#FF9F65';
+    return '#00E0FF';
+  }
+
   filterEntries(): OrarEntry[] {
     if (this.dayIndex == null) return null;
     let filtered = this.orarEntries.filter(e => e.day === this.days[this.dayIndex]);
