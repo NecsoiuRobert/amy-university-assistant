@@ -60,4 +60,9 @@ export class OrarComponent implements OnInit {
     if (this.dayIndex === -1) this.dayIndex = 6;
   }
 
+  navigate() {
+    const url = 'https://www.google.com/maps/dir/44.4411135,26.0516816/Facultatea+de+Automatic%C4%83+%C8%99i+Calculatoare,+Splaiul+Independen%C8%9Bei+313,+Bucure%C8%99ti/@44.4386122,26.0479359,17z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x40b201ebafcdf7a3:0xeafb513bd76c5277!2m2!1d26.0477521!2d44.4357327';
+    window.open(url, '_blank');
+  }
+
 }
