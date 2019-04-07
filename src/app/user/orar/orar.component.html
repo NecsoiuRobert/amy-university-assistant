@@ -19,8 +19,8 @@
       </div>
       <div class="orar-body">
         <div style="display: block; margin:auto; max-width: 100px;margin-bottom:10px;">
+            <div (click)="setIndexToday()" class="button blue-button" >Agenda zilei</div>
             <span (click)="decrementDayIndex()"><img src="../../../assets/images/arrow_left.svg"></span><span style="margin-right:10px;margin-left:10px;" >{{days[dayIndex]}}</span><span (click)="incrementDayIndex()"><img src="../../../assets/images/arrow_right.svg"></span>
-
         </div>
           <div *ngFor="let entry of filterEntries()">
               <div class="orar-entry">
@@ -28,7 +28,7 @@
                     <div class="circle" [style.background-color]="getColor(entry.type)"></div>
                     <p class="title-entry">{{entry.title}}</p>
                 </div>
-                  <div style="float:right; display:inline-block; color: rgba(41, 191, 246, 0.4);padding:10px;">
+                  <div style="float:right; display:inline-block; color: #0F2252;padding:10px;">
                       <span >{{entry.room}}</span> 
                       <br>
                       <span>{{entry.hour}}-</span>
@@ -47,7 +47,7 @@
             <p>Sala:</p>
             <p>Descriere curs:<br>
             </p>
-            <div (click)="navigate()" class="button yellow-button" ><img src="../../../assets/images/get_directions.svg" > Get directions</div>
+            <div (click)="navigate()" class="button yellow-button" ><img src="../../../assets/images/get_directions.svg" >Navigare</div>
           </div>
         <div class="circle-button">
           <img src="../../../assets/images/kortana_icon.svg" style="max-width: 100%;">

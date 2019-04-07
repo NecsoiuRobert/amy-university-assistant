@@ -5,7 +5,6 @@ import { RegisterComponent } from './admin/register/register.component';
 import { LoginComponent } from './login/login.component';
 import { OrarEditComponent } from './admin/orar-edit/orar-edit.component';
 import { OrarComponent } from './user/orar/orar.component';
-import { AgendaComponent } from './user/agenda/agenda.component';
 import { ActivateComponent } from './user/activate/activate.component';
 import { AccountComponent } from './user/account/account.component';
 import { AlertsComponent } from './alerts/alerts.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
   ]},
   { path: 'user', children: [
     { path: 'orar', component: OrarComponent },
-    { path: 'agenda', component: AgendaComponent },
     { path: 'activate', component: ActivateComponent },
     { path: 'account', component: AccountComponent }
   ]}
