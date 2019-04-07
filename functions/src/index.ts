@@ -64,7 +64,7 @@ exports.firestoreEmail = functions.firestore
         from: 'kortana.assistant@gmail.com',
         to: user.email,
         subject: 'Kortana - Activare cont',
-        html: templateActivare('http://localhost:4200/user/activate?id=' + b64EncodeUnicode(user.email)) // TODO: pune url firebase pentru deploy
+        html: templateActivare('https://amy-university-assistant.firebaseapp.com/user/activate?id=' + b64EncodeUnicode(user.email)) // TODO: pune url firebase pentru deploy
       };
       
       nodeMailerTransport.sendMail(mailOptions);

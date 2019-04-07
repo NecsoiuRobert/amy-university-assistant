@@ -1,6 +1,5 @@
 <div class="row">
-  <!-- TODO vizibil doar sefului de grupa -->
-  <form [formGroup]="alertForm" (ngSubmit)="onSubmit()" *ngIf="alertForm" class="col s12 m8 offset-m2 l6 offset-l3 form-alerte">
+  <form [formGroup]="alertForm" (ngSubmit)="onSubmit()" *ngIf="alertForm && user && user.role === 'sef'" class="col s12 m8 offset-m2 l6 offset-l3 form-alerte">
     <p style="font-size:1.5em; text-align:center;">Adauga anunt</p>
     <hr>
     <label>Titlu
@@ -21,6 +20,9 @@
   <div class="col s12 m8 offset-m2 l6 offset-l3 orar-body">
     <div style="display: block; margin:auto; max-width: 100px;margin-bottom:10px;">
     </div>
+    <h2>
+      Anunturi
+    </h2>
     <div>
       <div class="orar-entry" *ngFor="let alert of alerts">
         <div class="vertical-align:center;">

@@ -1,11 +1,11 @@
 <div class="content">
   <img src="../../../assets/images/kortana-hi.svg" class="img-responsive" style="max-width: 80%;">
-  <h4>
-      Bună, Mihai! Ce avem în plan astăzi?
+  <h4 *ngIf="user">
+    Bună, {{user.name}}! Ce avem în plan astăzi?
   </h4>
-<p style="color:#A5A5A5;font-size:1.1em;">Vorbește sau alege o opțiune.</p>
-<img src="../../../assets/images/voice_record.svg" class="img-responsive record_voice" style="max-width: 100%;">
-<div class="button blue-button">Agenda zilei </div>
-<div class="button blue-button">Orarul meu </div>
-<div class="button blue-button">Anunturi noi </div>
-  </div>
+  <p style="color:#A5A5A5;font-size:1.1em;">Vorbește sau alege o opțiune.</p>
+  <img src="../../../assets/images/voice_record.svg" class="img-responsive record_voice" style="max-width: 100%;">
+  
+  <div class="button blue-button" routerLink="/user/orar">Orarul meu </div>
+  <div class="button blue-button" routerLink="/alerts">Anunturi noi</div>
+</div>

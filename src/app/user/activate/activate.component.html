@@ -1,7 +1,8 @@
 <form  class ="activate-form" *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <p style="font-size:1.5em; text-align:center;">Activeaza-ti contul</p>
   <hr>
-  <img src="../../../assets/images/user.svg" style="margin:auto; display:block;margin-top:2rem;" class="responsive-img">  
+  <app-face-auth #faceDataGetterComponent (finishedRegistering)="faceRecognitionDataFinished($event)" [hidden]="!faceRecognitionComponentVisible"></app-face-auth>
+  <img src="../../../assets/images/user.svg" style="margin:auto; display:block; margin-top:2rem;" class="responsive-img" (click)="OpenFaceDataRegister()">  
   <div class="file-field input-field">
     
     <div class="button-activate blue-button">

@@ -3,6 +3,8 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Alert } from '../models/alert';
 import { AfterViewInit } from '@angular/core';
 import { AlertService } from '../services/alert.service';
+import { IdentityService } from '../user/identity.service';
+import { User } from '../models/user';
 declare var $: any;
 
 @Component({
@@ -20,17 +22,25 @@ export class AlertsComponent implements OnInit, AfterViewInit {
 
   alerts: Alert[] = [];
   grupe = ['313CC', '335CA', '343C5'];
+  user: User;
 
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService, private identityService: IdentityService) { }
 
   ngOnInit() {
-    // TODO filter pt grupa user
-    this.alertService.getAlerte(null).subscribe(
-      alerts => {
-        this.alerts = alerts;
-        console.log(alerts);
-      }
-    )
+    this.identityService.getFirebaseAuthState().subscribe(data1 => { 
+      console.log(data1)
+      if (data1 && data1.email)
+      this.identityService.getUserData(data1.email).subscribe(data => {
+        console.log(data);
+        this.user = data;
+        this.alertService.getAlerte(this.user.grupa).subscribe(
+          alerts => {
+            this.alerts = alerts;
+            console.log(alerts);
+          }
+        )
+      });
+    })
   }
   
   ngAfterViewInit() {
