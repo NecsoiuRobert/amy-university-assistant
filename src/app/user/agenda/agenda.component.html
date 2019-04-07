@@ -1,3 +1,52 @@
-<p>
-  agenda works!
-</p>
+<div class="content">
+    <div class="filter-body">
+        <div style=" max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
+        </div>
+        <div style="max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
+        </div>
+        <div style=" max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
+        </div>
+      </div>
+      <div class="orar-body">
+          <div *ngFor="let entry of orarEntries.slice(0, 1)">
+              <div class="orar-entry">
+                <div style="display:inline-block; max-width: 300px;">
+                    <div class="circle"style="background-color:red;padding:10px;"></div>
+                    <p class="title-entry">{{entry.title}}</p>
+                </div>
+                
+                  <!-- <p>{{entry.acronim}}</p>
+                  <p>{{entry.description}}</p>
+                  <p>{{entry.professor}}</p>
+                  <p>{{entry.type}}</p>-->
+                  <div style="float:right; display:inline-block; color: rgba(41, 191, 246, 0.4);padding:10px;">
+                      <span >{{entry.room}}</span> 
+                      <br>
+                      <span>{{entry.hour}}-</span>
+                      <span>{{entry.hour + entry.duration}}</span>
+                  </div>
+              </div>
+             
+            </div>    
+        </div>
+        <div class="descriere-body">
+            <p>Titlu</p>
+            <hr>
+            <p>Profesor curs:</p>
+            <p>Laborant:</p>
+            <p>Interval orar:</p>
+            <p>Sala:</p>
+            <p>Descriere curs:<br>
+            </p>
+            <div class="button yellow-button" ><img src="../../../assets/images/get_directions.svg" > Get directions</div>
+          </div>
+        <div class="circle-button">
+          <img src="../../../assets/images/kortana_icon.svg" style="max-width: 100%;">
+        </div>
+</div>
