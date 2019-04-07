@@ -17,7 +17,7 @@ export class VoiceListenerService {
     this.recognition.abort();    
   }
 
-  assistantName = [ "cortana" ]
+  assistantName = [ "cortana", "cordana" ]
 
   constructor() { 
     this.recognition.lang = "ro-RO";

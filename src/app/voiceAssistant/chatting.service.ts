@@ -3,6 +3,7 @@ import { ApiAiClient } from 'api-ai-javascript';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { VoiceListenerService } from './voice-listener.service';
 import { isNullOrUndefined } from 'util';
+import { Subject } from 'rxjs';
 
 declare var responsiveVoice: any;
 
@@ -13,7 +14,7 @@ export class ChattingService {
   private waiting_for_more_info: boolean = false;
   
   public _answer: any = new RequestAnswer();
-  @Output() finishedCommand:EventEmitter<String> = new EventEmitter();
+  @Output() finishedCommand:Subject<any> = new Subject<any>();
   // @Output() dialogEnded: EventEmitter<RequestAnswer> = new EventEmitter();
   
   constructor(private _voiceListener: VoiceListenerService) {
@@ -49,7 +50,7 @@ export class ChattingService {
             console.log(response, "response");
             this._answer.intentName = intentName;
             this.talkLoud(response['result']['fulfillment']['speech']);
-            this.finishedCommand.emit({intentName, ...response['result']['parameters']});
+            this.finishedCommand.next({intentName, ...response['result']['parameters']});
           }
         });
       }});
