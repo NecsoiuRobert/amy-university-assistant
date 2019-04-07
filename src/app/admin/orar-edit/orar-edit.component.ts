@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
   selector: 'app-orar-edit',
   templateUrl: './orar-edit.component.html',
-  styleUrls: ['./orar-edit.component.sass']
+  styleUrls: ['./orar-edit.component.scss']
 })
 export class OrarEditComponent implements OnInit, AfterViewInit {
 

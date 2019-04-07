@@ -1,36 +1,48 @@
-<form [formGroup]="orarEntryForm" (ngSubmit)="onSubmit()" *ngIf="orarEntryForm">
-    <label>Nume</label>
+<form [formGroup]="orarEntryForm" (ngSubmit)="onSubmit()" *ngIf="orarEntryForm" class="form-orar">
+    <p style="font-size:1.5em; text-align:center;">Adauga orar</p>
+    <hr>
+    <label>Nume
     <input type="text" formControlName="title">
-    <label>Acronim</label>
+  </label>
+    <label>Acronim
     <input type="text" formControlName="acronim">
-    <label>Descriere</label>
+  </label>
+    <label>Descriere
     <input type="text" formControlName="description">
-    <label>Profesor</label>
+  </label>
+    <label>Profesor
     <input type="text" formControlName="professor">
-    <label>Tip</label>
+  </label>
+    <label>Tip
     <select formControlName="type">
       <option *ngFor="let type of types" [value]="type">{{type}}</option>
     </select>
-    <label>Sala</label>
+  </label>
+    <label>Sala
     <select formControlName="room">
       <option *ngFor="let room of rooms" [value]="room">{{room}}</option>
     </select>
-    <label>Grupa</label>
+  </label>
+    <label>Grupa
     <select formControlName="grupa"> 
       <option [value]="null">Toate</option>
       <option *ngFor="let grupa of grupe" [value]="grupa">{{grupa}}</option>
     </select>
-    <label>Zi</label>
+  </label>
+    <label>Zi
     <select formControlName="day">
       <option *ngFor="let day of days" [value]="day">{{day}}</option>
     </select>
-    <label>Ora</label>
+  </label>
+    <label>Ora
     <select formControlName="hour">
       <option *ngFor="let hour of getAvailableHours()" [value]="hour">{{hour}}</option>
     </select>
-    <label>Durata</label>
+  </label>
+    <label>Durata
     <select formControlName="duration">
       <option *ngFor="let duration of getAvailableDurations()" [value]="duration">{{duration}}</option>
     </select>
-    <button mat-raised-button type="submit">Adauga intrare</button>
+  </label>
+    <button class="blue-button"mat-raised-button type="submit">Adauga intrare</button>
   </form>

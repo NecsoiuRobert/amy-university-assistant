@@ -1,0 +1,33 @@
+.form-orar{
+    max-width:400px;
+    margin: 10vh auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px rgba(83, 83, 83, 0.25);
+    padding:20px;
+    color:#0F2252; 
+    position:relative;
+}
+button {
+    display: inline-block;
+    border: none;
+    width:100%;
+    padding: 10px;
+    padding-left:3em;
+    padding-right:3em;
+    margin-top:30px;
+    margin-bottom:20px;
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+
+button:active {
+    transform: scale(0.99);
+}
