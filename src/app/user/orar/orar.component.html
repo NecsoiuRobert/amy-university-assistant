@@ -1,15 +1,45 @@
-<div class="orar-body">
-    <div *ngFor="let entry of orarEntries.slice(0, 1)">
-        <div class="orar-entry">
-            <p>{{entry.title}}</p>
-            <p>{{entry.acronim}}</p>
-            <p>{{entry.description}}</p>
-            <p>{{entry.professor}}</p>
-            <p>{{entry.type}}</p>
-            <p>{{entry.room}}</p>
-            <p>{{entry.hour + entry.duration}}</p>
-            <p></p>
+<div class="content">
+    <div class="filter-body">
+        <div style=" max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
         </div>
-      
-      </div>    
-  </div>
+        <div style="max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
+        </div>
+        <div style=" max-width: 300px;">
+            <div class="circle"style="background-color:red;padding:10px;"></div>
+            <p class="title-entry">Toate cursurile</p>
+        </div>
+      </div>
+      <div class="orar-body">
+        <div style="display: block; margin:auto; max-width: 100px;">
+            <span ><img src="../../../assets/images/arrow_left.svg"></span>Luni<span ><img src="../../../assets/images/arrow_right.svg"></span>
+
+        </div>
+          <div *ngFor="let entry of orarEntries.slice(0, 1)">
+              <div class="orar-entry">
+                <div style="display:inline-block; max-width: 300px;">
+                    <div class="circle"style="background-color:red;padding:10px;"></div>
+                    <p class="title-entry">{{entry.title}}</p>
+                </div>
+                
+                  <!-- <p>{{entry.acronim}}</p>
+                  <p>{{entry.description}}</p>
+                  <p>{{entry.professor}}</p>
+                  <p>{{entry.type}}</p>-->
+                  <div style="float:right; display:inline-block; color: rgba(41, 191, 246, 0.4);padding:10px;">
+                      <span >{{entry.room}}</span> 
+                      <br>
+                      <span>{{entry.hour}}-</span>
+                      <span>{{entry.hour + entry.duration}}</span>
+                  </div>
+              </div>
+             
+            </div>    
+        </div>
+        <div class="descriere-body">
+            adasda
+          </div>
+</div>
