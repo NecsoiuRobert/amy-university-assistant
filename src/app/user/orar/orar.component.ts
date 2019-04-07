@@ -57,9 +57,9 @@ export class OrarComponent implements OnInit {
     if (this.dayIndex == null) return null;
     let filtered = this.orarEntries.filter(e => e.day === this.days[this.dayIndex]);
     if (this.typeIndex !== 0) {
-      return filtered.filter(e => e.type === this.types[this.typeIndex]);
+      filtered = filtered.filter(e => e.type === this.types[this.typeIndex]);
     }
-    return filtered;
+    return filtered.sort((a, b) => a.hour - b.hour);
   }
 
   incrementDayIndex() {
