@@ -1,0 +1,15 @@
+.content{
+    display: block;
+    max-width:800px;
+    margin: 10vh auto;
+    text-align: center;
+}
+.record_voice{
+    opacity: 0.5;
+}
+.record_voice:hover{
+    opacity: 1;
+}
+.record_voice:focus{
+    opacity: 1;
+}
