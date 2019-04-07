@@ -118,8 +118,7 @@ export class IdentityService {
   }
 
   signOut() {
-    this._afAuth.auth.signOut();
-    this.router.navigate(['/home']);
+    return this._afAuth.auth.signOut();
   }
 
   public b64EncodeUnicode(str: any) {

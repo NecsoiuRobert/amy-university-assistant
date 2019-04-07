@@ -3,6 +3,7 @@ declare var $: any;
 import * as M from 'materialize-css';
 import { IdentityService } from 'src/app/user/identity.service';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   user: User;
 
-  constructor(private elRef: ElementRef, private identityService: IdentityService) { }
+  constructor(private elRef: ElementRef, private identityService: IdentityService, private router: Router) { }
 
   ngOnInit() {
     this.identityService.getFirebaseAuthState().subscribe(data1 => { 
@@ -29,7 +30,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.identityService.signOut();
+    this.identityService.signOut().then(
+      data => {
+        this.user = null;
+        this.router.navigate(['home']);
+      }
+    );
   }
 
 }
