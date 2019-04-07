@@ -17,6 +17,10 @@ export class OrarComponent implements OnInit {
     // TODO ia grupa din userul logat
     this.orarService.getOrarEntries('313CC', null).subscribe(
       orarEntries => {
+        orarEntries.forEach(element => {
+          element.hour -= 0;
+          element.duration -= 0;
+        });
         this.orarEntries = orarEntries;
         console.log(orarEntries);
       }
