@@ -50,7 +50,7 @@ export class IdentityService {
           .doc(email)
           .snapshotChanges().pipe(map(snap => snap.payload.data() as User));
       this._userSubject[email] = new ReplaySubject(1);
-      this._userObservable[email].subscribe(user => {console.log("PULA"); this._userSubject[email].next(user)});
+      this._userObservable[email].subscribe(user => {console.log("test"); this._userSubject[email].next(user)});
     }
 
     return this._userSubject[email].asObservable();

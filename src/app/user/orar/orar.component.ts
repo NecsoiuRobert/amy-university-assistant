@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrarEntry } from 'src/app/models/orar-entry';
 import { OrarService } from 'src/app/services/orar.service';
+import { User } from 'src/app/models/user';
+import { IdentityService } from '../identity.service';
 
 @Component({
   selector: 'app-orar',
@@ -15,23 +17,31 @@ export class OrarComponent implements OnInit {
   types = ['Toate', 'Curs', 'Laborator', 'Seminar'];
   typeIndex = 0;
   selectedEntry: OrarEntry = null;
+  user: User;
 
-  constructor(private orarService: OrarService) { }
+  constructor(private orarService: OrarService, private identityService: IdentityService) { }
 
   ngOnInit() {
-    this.dayIndex = new Date().getDay();
+    
+    this.identityService.getFirebaseAuthState().subscribe(data1 => { 
+      console.log(data1)
+      this.identityService.getUserData(data1.email).subscribe(data => {
+        console.log(data);
+        this.user = data;
 
-    // TODO ia grupa din userul logat
-    this.orarService.getOrarEntries('313CC', null).subscribe(
-      orarEntries => {
-        orarEntries.forEach(element => {
-          element.hour -= 0;
-          element.duration -= 0;
-        });
-        this.orarEntries = orarEntries;
-        console.log(orarEntries);
-      }
-    );
+        this.orarService.getOrarEntries(this.user.grupa, null).subscribe(
+          orarEntries => {
+            orarEntries.forEach(element => {
+              element.hour -= 0;
+              element.duration -= 0;
+            });
+            this.orarEntries = orarEntries;
+            console.log(orarEntries);
+          }
+        );
+      });
+    })
+    this.dayIndex = new Date().getDay();
   }
 
   getColor(type) {

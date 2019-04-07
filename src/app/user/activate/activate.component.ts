@@ -11,8 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ActivateComponent implements OnInit {
 
-  // TODO: face data on account activation
-
   user: User = null;
   userForm: FormGroup = null;
 
@@ -46,6 +44,8 @@ export class ActivateComponent implements OnInit {
         .catch(error => {
           console.log(error);
         });
+      } else {
+        this.router.navigate(['login']);
       }
     });
   }
