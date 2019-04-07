@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('password').value
       ).then(
         data => {
-          this.router.navigate(['account']);
+          this.router.navigate(['user', 'account']);
         }
       ).catch(
         error => {

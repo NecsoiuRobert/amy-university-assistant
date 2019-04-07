@@ -1,19 +1,30 @@
-  <div class="navbar-fixed">
-    <nav class ="hide-header">
-      <div class="nav-wrapper container">
-        <a [routerLink]="['/feed']" href="#!" class="brand-logo"><img src="../../../assets/images/logo.svg"  width="50" alt="" srcset=""></a>
-        <a  data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li  routerLinkActive="active" ><a [routerLink]="['/login']">Login</a></li>
-          <!-- <li  routerLinkActive="active" ><a [routerLink]="['/user-profile']" >My entries</a></li> -->
-          <li><a (click)="logout()">Logout</a></li>
-        </ul>
+<div> 
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    
+    <img routerLink="/home" fxHide.lt-md="true" class="logo" src="../../assets/logo.png" alt="PW-Cinema">  
+    <!-- <span class="welcome" *ngIf="user">{{navbarTexts.hello[selectedLang]}}, {{user.firstName}}!</span> -->
+    <span class="fill-remaining-space"></span>
+    <mat-icon fxHide.gt-sm="true" (click)="logout()">meeting_room</mat-icon>
+    <img routerLink="/home" fxHide.gt-sm="true" class="logo" src="../../assets/logo.png" alt="PW-Cinema"> 
+    
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/login" >Login</a>
+    </div>
+    
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container content">
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/login">Login</a>
       </div>
-    </nav>
-  </div>
-
-  <ul class="sidenav"  id="mobile-demo">
-    <li routerLinkActive="active"><a [routerLink]="['/login']"   >Login</a></li>
-    <!-- <li routerLinkActive="active" ><a [routerLink]="['/user-profile']">My Entries</a></li> -->
-    <li><a (click)="logout()">Logout</a></li>
-  </ul>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
