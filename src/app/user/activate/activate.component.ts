@@ -47,6 +47,8 @@ export class ActivateComponent implements OnInit {
         .catch(error => {
           console.log(error);
         });
+      } else {
+        this.router.navigate(['login']);
       }
     });
   }

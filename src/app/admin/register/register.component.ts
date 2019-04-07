@@ -13,11 +13,19 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     users: new FormArray([])
   });
+  user: User;
 
   constructor(private identityService: IdentityService) { }
 
   ngOnInit() {
     this.addUser();
+    this.identityService.getFirebaseAuthState().subscribe(data1 => { 
+      console.log(data1)
+      this.identityService.getUserData(data1.email).subscribe(data => {
+        console.log(data);
+        this.user = data;
+      });
+    })
   }
 
   addUser() {

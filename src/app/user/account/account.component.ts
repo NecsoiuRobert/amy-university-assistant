@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IdentityService } from '../identity.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  constructor(private identityService: IdentityService) { }
 
   ngOnInit() {
+    this.identityService.getFirebaseAuthState().subscribe(data1 => { 
+      console.log(data1)
+      this.identityService.getUserData(data1.email).subscribe(data => {
+        console.log(data);
+        this.user = data;
+      });
+    })
   }
 
 }
