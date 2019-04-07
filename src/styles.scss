@@ -89,3 +89,27 @@ input:not([type]).valid, input:not([type]):focus.valid, input[type=text].valid, 
                 background:  linear-gradient(90deg, #FFC975 0%, #FF9F65 100%);
                 box-shadow: 0px 4px 10px rgba(255, 159, 101, 0.25);
             }
+            .button
+            {
+                display: inline-block;
+                border: none;
+                max-width:300px;
+                padding: 10px;
+                padding-left:3em;
+                padding-right:3em;
+                margin-top:10px;
+                margin-bottom:20px;
+                margin-right: 30px;
+                text-decoration: none;
+                color: #ffffff;
+                cursor: pointer;
+                text-align: center;
+                transition: background 250ms ease-in-out, 
+                            transform 150ms ease;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+            .button:active {
+                transform: scale(0.99);
+            }
+            

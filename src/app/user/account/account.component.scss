@@ -3,9 +3,14 @@
     max-width:800px;
     margin: 10vh auto;
     text-align: center;
+    padding:1em;
 }
 .record_voice{
     opacity: 0.5;
+    display: block;
+    margin:auto;
+    margin-top:2rem;
+    margin-bottom:2rem;
 }
 .record_voice:hover{
     opacity: 1;
