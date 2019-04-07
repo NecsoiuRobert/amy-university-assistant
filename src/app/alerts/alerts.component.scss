@@ -1,12 +1,11 @@
 .form-alerte{
-    max-width:400px;
-    margin: 10vh;
     background: #FFFFFF;
     box-shadow: 0px 4px 50px rgba(83, 83, 83, 0.25);
     padding:20px;
     color:#0F2252; 
     position:relative;
     display: inline-block;
+    margin: 50px auto;
 }
 button {
     display: inline-block;
@@ -22,7 +21,7 @@ button {
     cursor: pointer;
     text-align: center;
     transition: background 250ms ease-in-out, 
-                transform 150ms ease;
+    transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
@@ -33,9 +32,6 @@ button:active {
     transform: scale(0.99);
 }
 .orar-body{
-    margin: 10vh;
-    max-width:600px;
-    min-width: 500px;
     background: #FFFFFF;
     box-shadow: 0px 4px 50px rgba(83, 83, 83, 0.25);
     padding:20px;
@@ -55,4 +51,4 @@ button:active {
     display: inline-block;
     font-size:1.2em;
     font-weight: 500;
-    }
+}

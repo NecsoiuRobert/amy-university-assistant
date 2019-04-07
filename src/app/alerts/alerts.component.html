@@ -1,32 +1,37 @@
-<form [formGroup]="alertForm" (ngSubmit)="onSubmit()" *ngIf="alertForm" class="form-alerte">
+<div class="row">
+  <form [formGroup]="alertForm" (ngSubmit)="onSubmit()" *ngIf="alertForm" class="col s12 m8 offset-m2 l6 offset-l3 form-alerte">
     <p style="font-size:1.5em; text-align:center;">Adauga anunt</p>
     <hr>
-  <label>Titlu
-  <input type="text" formControlName="title">
-</label>
-  <label>Anunt
-  <input type="text" formControlName="announce">
-</label>
-  <label>Grupa
-  <select formControlName="grupa"> 
-    <option [value]="null">Toate</option>
-    <option *ngFor="let grupa of grupe" [value]="grupa">{{grupa}}</option>
-  </select>
-  <button class=" blue-button" style="width:100% !important;margin:auto;" mat-raised-button type="submit">Adauga alerta</button>
-</label>
-</form>
-<div class="orar-body">
+    <label>Titlu
+      <input type="text" formControlName="title">
+    </label>
+    <label>Anunt
+      <input type="text" formControlName="announce">
+    </label>
+    <label>Grupa
+      <select formControlName="grupa"> 
+        <option [value]="null">Toate</option>
+        <option *ngFor="let grupa of grupe" [value]="grupa">{{grupa}}</option>
+      </select>
+      <button class=" blue-button" style="width:100% !important;margin:auto;" mat-raised-button type="submit">Adauga alerta</button>
+    </label>
+  </form>
+
+  <div class="col s12 m8 offset-m2 l6 offset-l3 orar-body">
     <div style="display: block; margin:auto; max-width: 100px;margin-bottom:10px;">
     </div>
-      <div>
-          <div class="orar-entry">
-            <div class="vertical-align:center;">
-                <p class="title-entry">Titlu anunt</p>
-                <p style="float:right; display:inline-block; color: #009BFF;">8:00</p>
-                <hr>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat magna ac dictum pellentesque. Phasellus id mi ac sapien tempor dictum. Maecenas dignissim tellus diam, a dictum erat cursus sit amet. Curabitur finibus diam risus, id sagittis nulla lacinia vel. Suspendisse vel sollicitudin purus. </p>
-          </div>
-         
-        </div>    
-    </div>
+    <div>
+      <div class="orar-entry" *ngFor="let alert of alerts">
+        <div class="vertical-align:center;">
+          <p class="title-entry">{{alert.title}}</p>
+          <p style="float:right; display:inline-block; color: #009BFF;">4:20</p>
+          <hr>
+        </div>
+        <p>{{alert.announce}}</p>
+      </div>
+      
+    </div>    
+  </div>
+  
+  
+</div>

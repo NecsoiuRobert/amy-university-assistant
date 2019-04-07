@@ -1,6 +1,6 @@
 export interface Alert {
     userId: string;
-    timestamp: Date;
+    timestamp: any;
     grupa: string;
     title: string;
     announce: string;

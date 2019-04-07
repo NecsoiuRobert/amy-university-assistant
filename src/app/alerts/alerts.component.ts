@@ -44,6 +44,7 @@ export class AlertsComponent implements OnInit, AfterViewInit {
       console.log(response);
       this.alertService.addAlert(response).then(data => {
         console.log(data);
+        this.alertForm.reset();
       })
     }
   }
