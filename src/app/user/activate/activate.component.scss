@@ -32,11 +32,11 @@ button:active {
     transform: scale(0.99);
 }
 
-.button
+.button-activate
 {
     display: block;
     border: none;
-    width:100%;
+    width:100% !important;
     padding: 10px;
     padding-left:3em;
     padding-right:3em;
@@ -51,7 +51,7 @@ button:active {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-.button:active {
+.button-activate:active {
     transform: scale(0.99);
 }
 
