@@ -1,3 +1,10 @@
-<p>
-  orar works!
-</p>
+<div *ngFor="let entry of orarEntries.slice(0, 1)">
+  <p>{{entry.title}}</p>
+  <p>{{entry.acronim}}</p>
+  <p>{{entry.description}}</p>
+  <p>{{entry.professor}}</p>
+  <p>{{entry.type}}</p>
+  <p>{{entry.room}}</p>
+  <p>{{entry.hour}}</p>
+  <p>{{entry.duration}}</p>
+</div>
