@@ -1,28 +1,30 @@
 <form  class ="activate-form" *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <p style="font-size:1.5em; text-align:center;">Activeaza-ti contul</p>
-    <hr>
-    <img src="../../../assets/images/user.svg" style="margin:auto; display:block;margin-top:2rem;" class="responsive-img">  
+  <p style="font-size:1.5em; text-align:center;">Activeaza-ti contul</p>
+  <hr>
+  <img src="../../../assets/images/user.svg" style="margin:auto; display:block;margin-top:2rem;" class="responsive-img">  
   <div class="file-field input-field">
-      
-        <div class="button blue-button">
-          <span>File</span>
-          <input type="file">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-      </div>
+    
+    <div class="button blue-button">
+      <span>Poza profil</span>
+      <input type="file">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
   <label>Prenume
-  <input type="text" formControlName="name">
-</label>  
+    <input type="text" formControlName="name">
+  </label>  
   <label>Nume
-  <input type="text" formControlName="surname"> 
-</label> 
+    <input type="text" formControlName="surname"> 
+  </label> 
   <label>Parola
-  <input type="password" formControlName="password">
-</label>  
+    <input type="password" formControlName="password">
+  </label>  
   <label>Confirma parola
-  <input type="password" formControlName="passwordConfirm">
-</label>
+    <input type="password" formControlName="passwordConfirm">
+  </label>
   <button class="blue-button" type="submit">Submit</button>
+  <img class="hide-on-med-and-down activation-bg" src="../../assets/images/activation-bg.svg" alt="">
+  <img class="hide-on-med-and-down activation-robot" src="../../assets/images/activation-robot.svg" alt="">
 </form>
