@@ -24,6 +24,7 @@ export class AlertsComponent implements OnInit, AfterViewInit {
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
+    // TODO filter pt grupa user
     this.alertService.getAlerte(null).subscribe(
       alerts => {
         this.alerts = alerts;
